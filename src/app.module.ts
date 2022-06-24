@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import {  StudytimeController } from './studytime/studytime.controller';
+import { ConfigModule } from '@nestjs/config';
+import { StudytimeService } from './studytime/studytime.service';
+import { StudytimeApiController } from './studytime-api/studytime-api.controller';
+
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
+      isGlobal: true,
+    }),
+  ],
+  controllers: [StudytimeApiController, StudytimeController],
+  providers: [StudytimeService]
 })
 export class AppModule {}
