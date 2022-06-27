@@ -29,6 +29,7 @@ export class StudytimeApiController {
 
   @Post('/:discordId')
   async getTotalStudyTime(@Param('discordId') discordId: string) {
+    console.log('upload');
     return await this.studytimeApiService.getTotalStudyTime(discordId);
   }
 }

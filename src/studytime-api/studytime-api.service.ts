@@ -20,12 +20,17 @@ export class StudytimeApiService {
     baekjoonTime: number,
     blogUploadCount: number,
   ) {
-    const date = new Date();
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
 
     const qb = await this.StudyTimeApiRepository.createQueryBuilder()
       .select('*')
       .where('DATE(created_at) = :today', {
-        today: '2022-06-27',
+        today: `${year}-${month >= 10 ? month : '0' + month}-${
+          date >= 10 ? date : '0' + date
+        }`,
       })
       .andWhere('discordId = :discordId', { discordId })
       .execute();
@@ -39,8 +44,8 @@ export class StudytimeApiService {
       studyTime.youtubeWatchCount = youtubeWatchCount;
       studyTime.baekjoonTime = baekjoonTime;
       studyTime.blogUploadCount = blogUploadCount;
-      studyTime.created_at = date;
-      studyTime.updated_at = date;
+      studyTime.created_at = today;
+      studyTime.updated_at = today;
 
       await this.StudyTimeApiRepository.save(studyTime);
     } else {
