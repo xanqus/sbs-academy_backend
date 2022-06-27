@@ -8,7 +8,7 @@ USE `sbs-academy_backend`;
 CREATE TABLE `User` (
     `id` INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `studentName` VARCHAR(255) NOT NULL,
-    `discordId` VARCHAR(255) NOT NULL
+    `discordId` VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE StudyTime (
@@ -17,5 +17,7 @@ CREATE TABLE StudyTime (
     `videoTime` FLOAT(3,1),
     `youtubeWatchCount` FLOAT(3,1),
     `baekjoonTime` FLOAT(3,1),
-    `blogUploadCount` FLOAT(3,1)
+    `blogUploadCount` FLOAT(3,1),
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NOT NULL
 );
