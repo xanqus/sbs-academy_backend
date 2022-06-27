@@ -10,6 +10,6 @@ export class UserEntity {
   })
   studentName: string;
 
-  @Column('int')
+  @Column({ type: 'int', unique: true })
   discordId: number;
 }

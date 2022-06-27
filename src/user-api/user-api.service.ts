@@ -15,7 +15,19 @@ export class UserApiService {
     user.studentName = studentName;
     user.discordId = discordId;
 
-    await this.UserApiRepository.save(user);
+    const qb = await this.UserApiRepository.createQueryBuilder()
+      .select('*')
+      .where('discordId = :discordId', {
+        discordId,
+      })
+      .execute();
+
+    if (qb.length === 0) {
+      await this.UserApiRepository.save(user);
+    } else {
+      qb[0].studentName = studentName;
+      await this.UserApiRepository.save(qb[0]);
+    }
 
     return user;
   }
