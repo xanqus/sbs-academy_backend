@@ -6,13 +6,11 @@ export class UserApiController {
   constructor(private userApiService: UserApiService) {}
   @Get()
   getHello() {
-    console.log(process.env.NODE_ENV);
     return "Hi I'm user controller";
   }
 
   @Post()
   async createUser(@Body() dto) {
-    console.log('dto', dto);
     const { studentName, discordId } = dto;
     this.userApiService.createUser(studentName, discordId);
   }

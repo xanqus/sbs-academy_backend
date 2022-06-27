@@ -43,8 +43,6 @@ export class StudytimeApiService {
       studyTime.updated_at = date;
 
       await this.StudyTimeApiRepository.save(studyTime);
-      console.log(qb);
-      console.log('dont exsits');
     } else {
       qb[0].videoTime = videoTime;
       qb[0].youtubeWatchCount = youtubeWatchCount;
@@ -52,8 +50,6 @@ export class StudytimeApiService {
       qb[0].blogUploadCount = blogUploadCount;
       qb[0].updated_at = new Date();
       await this.StudyTimeApiRepository.save(qb[0]);
-      console.log(qb);
-      console.log('exsits');
     }
 
     return studyTime;
