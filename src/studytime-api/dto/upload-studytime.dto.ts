@@ -4,4 +4,5 @@ export class uploadStudyTimeDto {
   readonly youtubeWatchCount: number;
   readonly baekjoonTime: number;
   readonly blogUploadCount: number;
+  readonly lectureId: string;
 }

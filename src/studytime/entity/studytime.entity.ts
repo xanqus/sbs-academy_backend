@@ -37,4 +37,7 @@ export class StudyTimeEntity {
     default: () => 'CURRENT_TIMESTAMP(3)',
   })
   updated_at: Date;
+
+  @Column('varchar')
+  lectureId: string;
 }

@@ -17,13 +17,16 @@ export class StudytimeApiController {
       youtubeWatchCount,
       baekjoonTime,
       blogUploadCount,
+      lectureId,
     } = dto;
+
     return await this.studytimeApiService.uploadStudyTime(
       discordId,
       videoTime,
       youtubeWatchCount,
       baekjoonTime,
       blogUploadCount,
+      lectureId,
     );
   }
 
