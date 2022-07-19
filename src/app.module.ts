@@ -11,7 +11,11 @@ import { UserModule } from './user/user.module';
   imports: [
     StudytimeApiModule,
     ConfigModule.forRoot({
-      envFilePath: [`${__dirname}\\config\\env\\.${process.env.NODE_ENV}.env`],
+      envFilePath: [
+        process.env.NODE_ENV === 'development'
+          ? `${__dirname}\\config\\env\\.${process.env.NODE_ENV}.env`
+          : `${__dirname}/config/env/.${process.env.NODE_ENV}.env`,
+      ],
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
