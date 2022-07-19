@@ -6,7 +6,7 @@ export class StudytimeController {
   constructor(private studytimeService: StudytimeService) {}
   @Get()
   getHello() {
-    return 'hello';
+    return `${__dirname}\\config\\env\\.${process.env.NODE_ENV}.env`;
   }
 
   @Post()
