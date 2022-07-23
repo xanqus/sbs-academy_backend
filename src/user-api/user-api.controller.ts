@@ -11,7 +11,7 @@ export class UserApiController {
 
   @Post()
   async createUser(@Body() dto) {
-    const { studentName, discordId } = dto;
-    this.userApiService.createUser(studentName, discordId);
+    const { studentName, lectureID, discordID } = dto;
+    this.userApiService.createUser(studentName, lectureID, discordID);
   }
 }

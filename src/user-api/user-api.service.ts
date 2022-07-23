@@ -10,15 +10,16 @@ export class UserApiService {
     private UserApiRepository: Repository<UserEntity>,
   ) {}
 
-  async createUser(studentName: string, discordId: number) {
+  async createUser(studentName: string, lectureID: string, discordID: number) {
     const user = new UserEntity();
     user.studentName = studentName;
-    user.discordId = discordId;
+    user.discordID = discordID;
+    user.lectureID = lectureID;
 
     const qb = await this.UserApiRepository.createQueryBuilder()
       .select('*')
-      .where('discordId = :discordId', {
-        discordId,
+      .where('discordID = :discordID', {
+        discordID,
       })
       .execute();
 
@@ -26,13 +27,14 @@ export class UserApiService {
       await this.UserApiRepository.save(user);
     } else {
       qb[0].studentName = studentName;
+      qb[0].lectureID = lectureID;
       await this.UserApiRepository.save(qb[0]);
     }
 
     return user;
   }
 
-  async getStudentNameByDiscordId(discordId: number) {
-    return await this.UserApiRepository.findOne({ where: { discordId } });
+  async getStudentNameByDiscordID(discordID: number) {
+    return await this.UserApiRepository.findOne({ where: { discordID } });
   }
 }

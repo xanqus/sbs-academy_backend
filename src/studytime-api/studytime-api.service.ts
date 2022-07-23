@@ -1,9 +1,8 @@
-import { ConsoleLogger, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Connection, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { StudyTimeEntity } from 'src/studytime/entity/studytime.entity';
 import { UserApiService } from 'src/user-api/user-api.service';
-import moment from 'moment';
 
 @Injectable()
 export class StudytimeApiService {
@@ -14,12 +13,12 @@ export class StudytimeApiService {
   ) {}
 
   async uploadStudyTime(
-    discordId: number,
+    discordID: number,
     videoTime: number,
     youtubeWatchCount: number,
     baekjoonTime: number,
     blogUploadCount: number,
-    lectureId: string,
+    lectureID: string,
   ) {
     const today = new Date();
     const year = today.getFullYear();
@@ -33,21 +32,21 @@ export class StudytimeApiService {
           date >= 10 ? date : '0' + date
         }`,
       })
-      .andWhere('discordId = :discordId', { discordId })
+      .andWhere('discordID = :discordID', { discordID })
       .execute();
 
     let studyTime;
 
     if (qb.length === 0) {
       studyTime = new StudyTimeEntity();
-      studyTime.discordId = discordId;
+      studyTime.discordId = discordID;
       studyTime.videoTime = videoTime;
       studyTime.youtubeWatchCount = youtubeWatchCount;
       studyTime.baekjoonTime = baekjoonTime;
       studyTime.blogUploadCount = blogUploadCount;
       studyTime.created_at = today;
       studyTime.updated_at = today;
-      studyTime.lectureId = lectureId;
+      studyTime.lectureId = lectureID;
 
       await this.StudyTimeApiRepository.save(studyTime);
     } else {
@@ -56,7 +55,7 @@ export class StudytimeApiService {
       qb[0].baekjoonTime = baekjoonTime;
       qb[0].blogUploadCount = blogUploadCount;
       qb[0].updated_at = new Date();
-      qb[0].lectureId = lectureId;
+      qb[0].lectureID = lectureID;
       console.log(qb[0]);
       await this.StudyTimeApiRepository.save(qb[0]);
     }
@@ -64,12 +63,12 @@ export class StudytimeApiService {
     return studyTime;
   }
 
-  async getTotalStudyTime(discordId: string) {
+  async getTotalStudyTime(discordID: string) {
     const totalDataArray = await this.StudyTimeApiRepository.find({
-      where: { discordId },
+      where: { discordID },
     });
-    const userInfo = await this.userApiService.getStudentNameByDiscordId(
-      parseInt(discordId),
+    const userInfo = await this.userApiService.getStudentNameByDiscordID(
+      parseInt(discordID),
     );
 
     let totalVideoTime = 0;

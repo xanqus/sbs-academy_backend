@@ -12,7 +12,7 @@ export class StudyTimeEntity {
   id: number;
 
   @Column()
-  discordId: number;
+  discordID: number;
 
   @Column('float')
   videoTime: number;
@@ -39,5 +39,5 @@ export class StudyTimeEntity {
   updated_at: Date;
 
   @Column('varchar')
-  lectureId: string;
+  lectureID: string;
 }

@@ -12,27 +12,27 @@ export class StudytimeApiController {
   @Post()
   async uploadStudyTime(@HostParam('version') version: string, @Body() dto) {
     const {
-      discordId,
+      discordID,
       videoTime,
       youtubeWatchCount,
       baekjoonTime,
       blogUploadCount,
-      lectureId,
+      lectureID,
     } = dto;
 
     return await this.studytimeApiService.uploadStudyTime(
-      discordId,
+      discordID,
       videoTime,
       youtubeWatchCount,
       baekjoonTime,
       blogUploadCount,
-      lectureId,
+      lectureID,
     );
   }
 
-  @Post('/:discordId')
-  async getTotalStudyTime(@Param('discordId') discordId: string) {
+  @Post('/:discordID')
+  async getTotalStudyTime(@Param('discordID') discordID: string) {
     console.log('upload');
-    return await this.studytimeApiService.getTotalStudyTime(discordId);
+    return await this.studytimeApiService.getTotalStudyTime(discordID);
   }
 }
