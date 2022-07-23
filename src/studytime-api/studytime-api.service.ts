@@ -39,7 +39,7 @@ export class StudytimeApiService {
 
     if (qb.length === 0) {
       studyTime = new StudyTimeEntity();
-      studyTime.discordId = discordID;
+      studyTime.discordID = discordID;
       studyTime.videoTime = videoTime;
       studyTime.youtubeWatchCount = youtubeWatchCount;
       studyTime.baekjoonTime = baekjoonTime;
