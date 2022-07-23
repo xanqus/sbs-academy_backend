@@ -46,7 +46,7 @@ export class StudytimeApiService {
       studyTime.blogUploadCount = blogUploadCount;
       studyTime.created_at = today;
       studyTime.updated_at = today;
-      studyTime.lectureId = lectureID;
+      studyTime.lectureID = lectureID;
 
       await this.StudyTimeApiRepository.save(studyTime);
     } else {
