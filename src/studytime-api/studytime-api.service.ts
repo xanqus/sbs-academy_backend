@@ -67,9 +67,7 @@ export class StudytimeApiService {
     const totalDataArray = await this.StudyTimeApiRepository.find({
       where: { discordID },
     });
-    const userInfo = await this.userApiService.getStudentNameByDiscordID(
-      parseInt(discordID),
-    );
+    const userInfo = await this.userApiService.getUserInfo(discordID);
 
     let totalVideoTime = 0;
     let totalYoutubeWatchCount = 0;

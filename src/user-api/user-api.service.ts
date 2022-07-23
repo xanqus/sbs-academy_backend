@@ -34,7 +34,7 @@ export class UserApiService {
     return user;
   }
 
-  async getStudentNameByDiscordID(discordID: number) {
+  async getUserInfo(discordID: string) {
     return await this.UserApiRepository.findOne({ where: { discordID } });
   }
 }
