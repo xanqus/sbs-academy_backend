@@ -14,8 +14,8 @@ export class StudytimeService {
     return this.studyTimeRepository.find();
   }
 
-  getStudyTimeOrderByVideoTime() {
-    const data = this.studyTimeRepository.query(
+  async getStudyTimeOrderByVideoTime(lectureID: string, studyItem: string) {
+    const data = await this.studyTimeRepository.query(
       `
         SELECT *
         FROM (
@@ -25,7 +25,7 @@ export class StudytimeService {
             SUM(baekjoonTime) AS baekjoonTimeSum,
             SUM(blogUploadCount) AS blogUploadCountSum
             FROM \`StudyTime\`
-            WHERE lectureID = "20220712I"
+            WHERE lectureID = ?
             AND discordID
             NOT IN (
                 '988298877058826282',
@@ -34,11 +34,12 @@ export class StudytimeService {
                 '784293332003848202'
             )
             GROUP BY discordID
-            ORDER BY youtubeWatchCountSum DESC
+            ORDER BY ${studyItem} DESC
         )A
         LEFT JOIN \`User\`
         ON \`User\`.discordID  = A.discordID
         `,
+      [lectureID],
     );
     return data;
   }

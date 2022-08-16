@@ -27,6 +27,7 @@ import { StudytimeModule } from './studytime/studytime.module';
       password: process.env.DATABASE_PASSWORD,
       database: 'sbs-academy_backend',
       entities: ['dist/**/*.entity{.ts,.js}'],
+      logging: true,
     }),
     StudytimeApiModule,
     UserApiModule,
