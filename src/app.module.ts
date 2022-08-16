@@ -6,6 +6,7 @@ import { StudytimeService } from './studytime/studytime.service';
 import { StudytimeApiModule } from './studytime-api/studytime-api.module';
 import { UserApiModule } from './user-api/user-api.module';
 import { UserModule } from './user/user.module';
+import { StudytimeModule } from './studytime/studytime.module';
 
 @Module({
   imports: [
@@ -30,8 +31,9 @@ import { UserModule } from './user/user.module';
     StudytimeApiModule,
     UserApiModule,
     UserModule,
+    StudytimeModule,
   ],
-  controllers: [StudytimeController],
-  providers: [StudytimeService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

@@ -1,16 +1,16 @@
 import { Body, Controller, Get, HostParam, Post } from '@nestjs/common';
 import { StudytimeService } from './studytime.service';
 
-@Controller({ path: 'studytime', host: 'test' })
+@Controller({ path: 'studytime' })
 export class StudytimeController {
   constructor(private studytimeService: StudytimeService) {}
   @Get()
-  getHello() {
-    return `${__dirname}\\config\\env\\.${process.env.NODE_ENV}.env`;
+  getAll() {
+    return this.studytimeService.getAll();
   }
 
-  @Post()
-  getPost() {
-    return 'post!';
+  @Get('/sort/videoTime')
+  getStudyTimeOrderByVideoTime() {
+    return this.studytimeService.getStudyTimeOrderByVideoTime();
   }
 }
